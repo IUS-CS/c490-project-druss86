@@ -1,41 +1,43 @@
-= CSCI C490 Design Document Requirements
+= Synonymously
 
-You will create a document to describe the particular Android project you wish to complete for this course.
-
-. Create a new Markdown or Asciidoctor document to replace this readme document.
-. Format your document with proper headings, sections, paragraphs, etc.
-. Your document should include descriptions of the rest of this document in copmelete and professional prose.
+An application that allows the user to perfect their knowledge of synonyms and antonyms. A random word will display at the bottom of the screen and then populate words into buttons in the middle of the screen.  The populated buttons will be either synonyms or antonyms of the word at the bottom of the screen and the user must choose the correct synonyms.  The app will test the user on their current knowledge of vocabulary as well as enhance their current arsenal of words. 
 
 == Section 1 – Motivation for Your App
 
-In this section, describe the motivation behind your choice of app to design and implement. Also indicate who is the target user base. Include references to existing apps that are similar to the app you are proposing – references must include the name of the app, the platform (e.g., iOS, Android, Windows, MacOS, etc.), and a link to a website describing the app.
+The motivation behind this app was initially to fulfill requirements of this document; however, I realized the app is extremely scalable and may provide the opportunity to add many more features beyond just matching synonyms.  This game can be played by anyone, but the main target audience are english-speaking human beings with basic knowledge of the language.  
+
+=== 1.1 Similar Application
+
+There are many vocabulary apps that are somewhat in the realm of this application but I could only find one app that was an almost 1:1 match.
+
+https://a-zcomp.com/web/index.php/2018/02/12/1540/["Synonyms and Antonyms" by A-Z Computers]
+Platforms: iOS, Android, Windows, Xbox, Amazon FireTV
 
 == Section 2 - Meeting Minimum Requirements
 
-In this section, describe using sentences and paragraphs written in English, the screens included in your app’s user interface. Include in this text portion the required diagrams (see below, 2.1 User Interface, Item #5). Describe how your app will not lose any user’s input data when switching between configurations and also among the various screens supported by your app. Items #2 and #4 (below) indicate that exceptions can be made, if you are electing to exercise one or both of these exception, then here is where you must make a compelling argument for the exception.
-
-Additionally, for this section, you must describe how your app will meet the data persistence requirement. Describe where the data will be stored (e.g., on the device, in the cloud, etc.), how it will be stored (e.g., in an SQL database), at what points during app execution that the storage of data will occur (consider using the Android app Life Cycle for describing when), how the data will be retrieved upon restart of the app, and at what point it will be retrieved (again, consider utilizing the Android app Life Cycle).
-
-Finally, for this section, describe how your app will communicate to the outside world. By what means (e.g., Bluetooth, Wi-Fi to Internet, etc.), for what purpose this outside world communication serves with respect to supporting the app’s functionality, and describe what devices or external resources are on the other end of the communication. If the device or other resource at the other end of the communication is going to be created by you (i.e., it does not already exist), then you must give specific details on how you will setup and configure this other device/resource.
-
 === 2.1 User Interface
 
-1. Must work in both landscape and portrait configuration and not lose any of the user's input when switching between configurations, and/or screens
-2. There can be an exception to #1, but in your initial design document, you must make a compelling argument for it to work in only one configuration
-3. Must work on both the Samsung Tab A 10.1" and the Nexus Asus 7" tablets
-4. There can be an exception to #3, but in your initial design document, you must make a compelling argument for it
-to work on only one of these devices
-5. You must submit diagrams for all the different screens in your app (both portrait and landscape configurations),
-one diagram per screen. These diagrams must clearly show the layout of your app's screens, i.e., where images, menus, widgets, views, etc., appear. These can be hand drawn with a .png submitted of the drawing.
+All views in the applcation will work in portrait and landscape views.  I plan to use a Kotlin ViewModel to avoid losing a screen-state when rotating or switching between apps.  
+
+There will be three screens to in this application:
+
+. The main screen when loading the app - this screen will show some buttons that are selections of how the user would like to proceed.  From this screen, the user may select a "Start" button to go to screen 2 or a "View Stats" to go to screen 3.
+. The screen where the user plays the game.  A key word will appear at the bottom of the screen and buttons will populate (perhaps with some sort of animation) synonyms and antonyms centered vertically and horizontally in the middle of the screen based on the key word. A submit button  A back button to return to the main menu screen will also be available here.
+. The screen that allows the user to view statistics. TBD on what kind of statistics will be implemented. A back button to return to the main menu screen will also be available here.
+
+**_You must submit diagrams for all the different screens in your app (both portrait and landscape configurations),one diagram per screen. These diagrams must clearly show the layout of your app's screens, i.e., where images, menus, widgets, views, etc., appear. These can be hand drawn with a .png submitted of the drawing._**
 
 === 2.2 Data Persistence
 
-1. Your app must demonstrate that it saves data from one use to another
-2. To test this, your app will be shut down by an onDestroy() event, and then restarted
-3. Data entered in by the user during one use must be present when the app is restarted for another use
+The application will store user statistics on their performance into an SQLite database. The amount of data will be small so it will be stored on the device that it is running on.  Storage of data will occur when the submit button is hit after each trivia word. Data will be retrieved at the onCreate of the Stats view.    
 
 === 2.3 Communication
 
+
+
+
+
+2.3Finally, for this section, describe how your app will communicate to the outside world. By what means (e.g., Bluetooth, Wi-Fi to Internet, etc.), for what purpose this outside world communication serves with respect to supporting the app’s functionality, and describe what devices or external resources are on the other end of the communication. If the device or other resource at the other end of the communication is going to be created by you (i.e., it does not already exist), then you must give specific details on how you will setup and configure this other device/resource.
 * Your app must demonstrate that it communicates with the outside world, with either another device or an external resource
 
 == Section 3 – MVC Breakdown of Your App
