@@ -19,7 +19,7 @@ Platforms: iOS, Android, Windows, Xbox, Amazon FireTV
 
 === 2.1 User Interface
 
-The same functionality in the applcation will work in either portrait or landscape views.  A ViewModel will be utilized to avoid losing a screen-state when rotating or switching between apps.  
+The same functionality in the application will work in either portrait or landscape views.  A ViewModel will be utilized to avoid losing a screen-state when rotating or switching between apps.  
 
 There will be three screens to in this application:
 
