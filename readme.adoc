@@ -1,6 +1,8 @@
-= Synonymously
+= Synonymist
 
-An application that allows the user to perfect their knowledge of synonyms and antonyms. A random word will display at the bottom of the screen and then populate words into buttons in the middle of the screen.  The populated buttons will be either synonyms or antonyms of the word at the bottom of the screen and the user must choose the correct synonyms.  The app will test the user on their current knowledge of vocabulary as well as enhance their current arsenal of words. 
+Definition: a specialist in the study or compiling of synonyms.
+
+This application that allows the user to perfect their knowledge of synonyms and antonyms to become the ultimate synonymist! A random word will display at the bottom of the screen and then populate words into buttons in the middle of the screen.  The populated buttons will be either synonyms or antonyms of the word at the bottom of the screen and the user must choose the correct synonyms.  The app will test the user on their current knowledge of vocabulary as well as enhance their arsenal of words. 
 
 == Section 1 – Motivation for Your App
 
@@ -10,22 +12,22 @@ The motivation behind this app was initially to fulfill requirements of this doc
 
 There are many vocabulary apps that are somewhat in the realm of this application but I could only find one app that was an almost 1:1 match.
 
-https://a-zcomp.com/web/index.php/2018/02/12/1540/["Synonyms and Antonyms" by A-Z Computers]
+https://a-zcomp.com/web/index.php/2018/02/12/1540/["Synonyms and Antonyms" by A-Z Computers] +
 Platforms: iOS, Android, Windows, Xbox, Amazon FireTV
 
 == Section 2 - Meeting Minimum Requirements
 
 === 2.1 User Interface
 
-All views in the applcation will work in portrait and landscape views.  I plan to use a Kotlin ViewModel to avoid losing a screen-state when rotating or switching between apps.  
+The same functionality in the applcation will work in either portrait or landscape views.  A ViewModel will be utilized to avoid losing a screen-state when rotating or switching between apps.  
 
 There will be three screens to in this application:
 
-. The main screen when loading the app - this screen will show some buttons that are selections of how the user would like to proceed.  From this screen, the user may select a "Start" button to go to screen 2 or a "View Stats" to go to screen 3.
-. The screen where the user plays the game.  A key word will appear at the bottom of the screen and buttons will populate (perhaps with some sort of animation) synonyms and antonyms centered vertically and horizontally in the middle of the screen based on the key word. A submit button  A back button to return to the main menu screen will also be available here.
-. The screen that allows the user to view statistics. TBD on what kind of statistics will be implemented. A back button to return to the main menu screen will also be available here.
+. The main screen when loading the app - this screen will show some buttons that are selections of how the user would like to proceed.  From this screen, the user may select a "Play" button to go to screen 2 or a "Stats" to go to screen 3.
+. The screen where the user plays the game.  A key word will appear at the bottom of the screen and buttons will populate (perhaps with some sort of animation) synonyms and antonyms centered vertically and horizontally in the middle of the screen based on the key word. A "Home" button will allow the user to return to the main menu screen. A "Stats" button will allow the user to view their running stats.
+. The screen that allows the user to view statistics. TBD on what kind of statistics will be implemented. A "Home" button will allow the user to return to the main menu screen. A "Play" button will allow the user to play the game.
 
-**_You must submit diagrams for all the different screens in your app (both portrait and landscape configurations),one diagram per screen. These diagrams must clearly show the layout of your app's screens, i.e., where images, menus, widgets, views, etc., appear. These can be hand drawn with a .png submitted of the drawing._**
+image::https://i.imgur.com/sArt3md.png[1558,990]
 
 === 2.2 Data Persistence
 
@@ -33,37 +35,33 @@ The application will store user statistics on their performance into an SQLite d
 
 === 2.3 Communication
 
-
-
-
-
-2.3Finally, for this section, describe how your app will communicate to the outside world. By what means (e.g., Bluetooth, Wi-Fi to Internet, etc.), for what purpose this outside world communication serves with respect to supporting the app’s functionality, and describe what devices or external resources are on the other end of the communication. If the device or other resource at the other end of the communication is going to be created by you (i.e., it does not already exist), then you must give specific details on how you will setup and configure this other device/resource.
-* Your app must demonstrate that it communicates with the outside world, with either another device or an external resource
+There is a RESTful API called Datamuse that contains a large database of words, along with their associated synonyms and antonyms (among other things).  I plan to make HTTPS requests to the API, have it return the JSON, parse the JSON, and plug it where necessary. A Java handler exists for this particular API, called Datamuse4J.  In fact, this handler is listed on Datamuse's website as a reputable source for calling the API with java functions.  As Kotlin has the ability to use Java, the same methods apply to Kotlin.  Further, there are a couple guides online to get everything wired up with Kotlin.
 
 == Section 3 – MVC Breakdown of Your App
 
-In this section, you must utilize the MVC Design Pattern to describe each of the screens supported by your app.
-There are a couple of ways you might go about organizing this section of your document:
-
-1. This approach uses one design document section per screen – i.e., provide View, Model, and Controller descriptions about each screen, one screen’s MVC set of descriptions after another
-2. This approach has three sections, a View section, a Model section, and a Controller section. In the View section provide a description of each screen appearing in your app, in the Model section provide a description of all Java classes used in the model, in the Controller section provide a description of all controllers required by your app
-
 === 3.1 View Descriptions
 
-In the description of each screen’s view, provide a diagram (See Section 2.1, above for details about this diagram). These diagrams will more than likely be identical to the ones used to satisfy Section 2 requirements, that is permissible. If the screen contains active widgets, e.g., a Button, then for each of these active widgets you must describe how the user interacts with the widget, what happens when the user does interact with the widget, and the name of the method/operation that is the “listener” for the widget – e.g., user pushes OK button to go back to previous screen, the goBack method in the Java class DataEntryActivity is the listener for this Button.
+image::https://i.imgur.com/sArt3md.png[1558,990]
 
-Include in this part the name of the .xml Layout file associated with each View and the various minimum screen sizes supported (in dp), e.g., 600dp and 800dp. Please include the root layout utilized by each View, e.g., ConstraintLayout, GridLayout, LinearLayout, etc., and why you elected to choose that particular root layout. It might be possible that you have decided to construct a View by writing Java methods and that the View’s .xml file is minimal. If that is the case be sure to name the controller that will be constructing your View along with the names of the methods that will have the implementation code.
+*Main Screen:* +
+The "Play" button loads the the "Play Screen View" where the user may play the game. +
+The "Stats" button loads the the "Stats Screen View" where the user may view their statistics. 
+
+*Play Screen:* +
+The "Home" button takes the user to the Main Screen. +
+The "Stats" button has the same functionality as the Main Screen. +
+The "Keyword" button will load the word that will populate each Synonym/Antonym button.  This button will be wired to submit answers on the first click and refresh the board with a new word on a second click. +
+The "Synonym/Antonym" button's functionality is simply a boolean value.  If left alone it indicates false, if depressed (clicked) it indicates true. 
+
+*Stats Screen:* +
+This view brings in defined information from the database and populates those areas. +
+The "Home" and "Play" button have the same functionality as indicated in the other screen views.
 
 === 3.2 Model Descriptions
 
-Start off with a high-level description of what data needs to be stored, and what Java classes and/or databases/external resources will be utilized to store this data.
-
-For each Java class used to store data, you must supply the name of the class, and a list of all public methods called by clients of the class (note: Controller classes are the likely clients). If a method has a precondition that must be satisfied by the calling client, e.g., a setter method that stores positive integer, then you must include a requires clause stating what the precondition is – this requires clause can be written in English or user mathematics if possible. Utilize design by contract in your design of the model java classes, i.e., if a setter method stores only positive integers, the setter method has a requires clause indicating that the value being supplied by the client must be positive, and the setter method does not have an if statement to check the requires clause.
-
-If your app’s model is utilizing an SQL database or some resource in the cloud, then you must provide a detailed description of this database/resource. For example, for a database answer at least the following, what tables will be present, what columns are in each of the tables, what are the data types of each of the columns, which column (if any) is the key field, how the tables relate to one another, etc.
+The model will need to store running user statistics in SQLite.  If the user were to suddenly close the application, the controller would need to be able to store information before exiting.  The plan is to never allow that issue to arise.  The controller will listen for the keyword button to be pressed for the submission of answers, and the information will then be stored.  Only when the keyword/submit button is pressed will data be stored.  Loading data will be done from loading the "Stats Screen View."
 
 === 3.3 Controller Descriptions
 
-Start off with a high-level description of each controller and what screen it controls. Then include which Life Cycle methods are overridden by the controller. This part of the description will almost certainly have to include as a minimum how onCreate is implemented. Describe how and when the controller saves off data into the model, and how and when it retrieves data from the model.
+The controller will be in charge of telling the client views and model view what happens when a button is press. The Play, Home, and Stats buttons will have listeners to load views accordingly. Loading the Play view will send an HTTPS request at the time of onCreate, populating the user interface's buttons with words from the API. The Synonnyms/Antonyms buttons will have boolean values tied to them and will work with the Keyword button to send data from the controller to the database. Upon clicking the Keyword button (aka Submit), the fractional count of boolean values will be added to the database at that instant. Upon onCreate of the Stats Screen view, the controller will bring the required information from the model layer into the view.  The Stats view should either call finish() after exiting or an update upon reloading to assure up-to-date data is represented.
 
-You must describe how your app will satisfy the data persistence requirement in the controller descriptions and/or the model descriptions. If the model is designed so that it always keeps the persistent data store up-to-date, then the model description will more than likely discuss persistence. If the controller is implemented to update the persistent data store at some specific time of the app’s life cycle, then the controller’s description will more than likely discuss persistence. The discussion might need to appear in both the model and the controller descriptions.
