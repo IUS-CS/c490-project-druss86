@@ -44,12 +44,8 @@ class DatamuseRepository {
 //            "Bad", "Good", "Fine", "Friend", "Dingle", "Clean", "Dirty", "Rough", "Soft", "Poor"
 //            //10 more
 //        )
-//        var removeRootWord = rootWordList.removeAt(0)
 //        var rootWord = rootWordList.shuffled().take(1)[0]
-//
-//       // var rootWord = rootWordList.
-//    val randomWordGenerator = RandomWordGenerator()
-//    val root = RandomWordProvider(randomWordGenerator)
+
 
 
     init {

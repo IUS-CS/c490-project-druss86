@@ -88,8 +88,6 @@ class GameFragment : Fragment() {
 
     fun updateRootButtonText(rootWordButton: Button){
         rootWordButton.text = RandomWordGenerator().setRootWord()//DatamuseRepository().root
-        //rootWordButton.text = DatamuseRepository().
-
     }
 
     //a synonym of a word from the api call should be put into the top left button in the UI
