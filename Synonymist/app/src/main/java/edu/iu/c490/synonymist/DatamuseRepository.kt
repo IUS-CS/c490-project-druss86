@@ -81,7 +81,6 @@ class DatamuseRepository {
 
 //                val word2 = response.body()!!
 //                responseData.value = word2[1]
-
             }
 
         })
@@ -104,10 +103,6 @@ class DatamuseRepository {
                 val word2 = response.body()!!
                 Log.d(TAG, "Datamuse word: ${word2}}")
                 responseData.value = word2[1]
-
-//                val word2 = response.body()!!
-//                responseData.value = word2[1]
-
             }
 
         })
@@ -115,6 +110,71 @@ class DatamuseRepository {
         return responseData
     }
 
+    fun fetchWord3(): LiveData<DatamuseWords> {
+
+        val responseData = MutableLiveData<DatamuseWords>()
+        val req = api.fetchDatamuseWords(datamuseURL + RandomWordGenerator().setRootWord())
+
+        //rootWordList.add(rootWordList.lastIndex+1)
+        req.enqueue(object: Callback<List<DatamuseWords>> {
+            override fun onFailure(call: Call<List<DatamuseWords>>, t: Throwable) {
+                Log.e(TAG, "Could not fetch a word: ${t}")
+            }
+
+            override fun onResponse(call: Call<List<DatamuseWords>>, response: Response<List<DatamuseWords>>) {
+                val word3 = response.body()!!
+                Log.d(TAG, "Datamuse word: ${word3}}")
+                responseData.value = word3[2]
+            }
+
+        })
+
+        return responseData
+    }
+
+    fun fetchWord4(): LiveData<DatamuseWords> {
+
+        val responseData = MutableLiveData<DatamuseWords>()
+        val req = api.fetchDatamuseWords(datamuseURL + RandomWordGenerator().setRootWord())
+
+        //rootWordList.add(rootWordList.lastIndex+1)
+        req.enqueue(object: Callback<List<DatamuseWords>> {
+            override fun onFailure(call: Call<List<DatamuseWords>>, t: Throwable) {
+                Log.e(TAG, "Could not fetch a word: ${t}")
+            }
+
+            override fun onResponse(call: Call<List<DatamuseWords>>, response: Response<List<DatamuseWords>>) {
+                val word4 = response.body()!!
+                Log.d(TAG, "Datamuse word: ${word4}}")
+                responseData.value = word4[3]
+            }
+
+        })
+
+        return responseData
+    }
+
+    fun fetchWord5(): LiveData<DatamuseWords> {
+
+        val responseData = MutableLiveData<DatamuseWords>()
+        val req = api.fetchDatamuseWords(datamuseURL + RandomWordGenerator().setRootWord())
+
+        //rootWordList.add(rootWordList.lastIndex+1)
+        req.enqueue(object: Callback<List<DatamuseWords>> {
+            override fun onFailure(call: Call<List<DatamuseWords>>, t: Throwable) {
+                Log.e(TAG, "Could not fetch a word: ${t}")
+            }
+
+            override fun onResponse(call: Call<List<DatamuseWords>>, response: Response<List<DatamuseWords>>) {
+                val word = response.body()!!
+                Log.d(TAG, "Datamuse word: ${word}}")
+                responseData.value = word[4]
+            }
+
+        })
+
+        return responseData
+    }
 
 
 }
