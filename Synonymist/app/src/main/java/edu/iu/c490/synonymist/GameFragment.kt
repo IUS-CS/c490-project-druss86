@@ -46,6 +46,7 @@ class GameFragment : Fragment() {
         val bottomRightButton = view.findViewById<Button>(R.id.bottomRight)
         val submitButton = view.findViewById<Button>(R.id.submitBtn)
         val homeButton = view.findViewById<Button>(R.id.homeBtn)
+
         /* Can remove to have no text on view create*/
 //        updateButtonText2(
 //            topLeftButton, topRightButton,
@@ -257,6 +258,10 @@ class GameFragment : Fragment() {
             Toast.makeText(context, "Score: "+ correctAnswers +"/8 correct", Toast.LENGTH_LONG).show()
         }
 
+        homeButton.setOnClickListener {
+            callbacks?.onHome()
+        }
+
         rootWordButton.text = "Start"
         Log.d(TAG, "Root Word: ${rootWordButton.text}")
 
@@ -456,6 +461,12 @@ class GameFragment : Fragment() {
         listener?.onFragmentInteraction(uri)
     }
 
+    interface Callbacks {
+        fun onHome()
+        fun onStats() // call for stats
+    }
+
+    private var callbacks: Callbacks? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -464,11 +475,12 @@ class GameFragment : Fragment() {
 //        } else {
 //            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
 //        }
-
+        callbacks = context as Callbacks?
     }
 
     override fun onDetach() {
         super.onDetach()
+        callbacks = null
     }
 
         /**
