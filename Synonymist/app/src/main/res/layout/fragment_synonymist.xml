@@ -20,8 +20,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
         android:text=""
-        android:onClick="onClick"
-        android:background="@drawable/button_press"
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toTopOf="@+id/topLeftMiddle"
         app:layout_constraintEnd_toStartOf="@+id/topRight"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +35,7 @@
         android:layout_marginEnd="75dp"
         android:layout_marginBottom="25dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toTopOf="@+id/topRightMiddle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/topLeft"
@@ -49,6 +49,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toTopOf="@+id/bottomLeftMiddle"
         app:layout_constraintEnd_toStartOf="@+id/topRightMiddle"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +63,7 @@
         android:layout_marginEnd="75dp"
         android:layout_marginBottom="25dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toTopOf="@+id/bottomRightMiddle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/topLeftMiddle"
@@ -75,6 +77,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toTopOf="@+id/bottomLeft"
         app:layout_constraintEnd_toStartOf="@+id/bottomRightMiddle"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,6 +91,7 @@
         android:layout_marginEnd="75dp"
         android:layout_marginBottom="25dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toTopOf="@+id/bottomRight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bottomLeftMiddle"
@@ -101,6 +105,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintEnd_toStartOf="@+id/bottomRight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottomLeftMiddle" />
@@ -113,6 +118,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="75dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bottomLeft"
         app:layout_constraintTop_toBottomOf="@+id/bottomRightMiddle" />
@@ -123,33 +129,45 @@
         android:layout_height="60dp"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_press_color_blue"
         android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/submitBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Submit"
+        android:background="@drawable/button_press_color_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/statsBtn"
+        app:layout_constraintStart_toEndOf="@+id/homeBtn" />
 
     <Button
         android:id="@+id/homeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
         android:layout_marginBottom="50dp"
         android:text="@string/home_button"
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/statsBtn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/statsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginBottom="50dp"
         android:text="@string/stats_button"
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/homeBtn" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

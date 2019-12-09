@@ -9,28 +9,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
-import edu.iu.c490.synonymist.DatamuseRepository
-import edu.iu.c490.synonymist.RandomWordGenerator
-import kotlinx.android.synthetic.main.fragment_synonymist.*
-import kotlin.math.log
-
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import edu.iu.c490.synonymist.api.PlayFragment
 
 private const val TAG = "GameFragment"
 
+/**
+ * The game's Fragment calls.  All Dynamic UI updates happen here and
+ * the game's activity cycle is handled here.
+ **/
 class GameFragment : Fragment() {
 
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-
+        arguments?.let {}
     }
 
     override fun onCreateView(
@@ -49,7 +44,8 @@ class GameFragment : Fragment() {
         val bottomRightMiddleButton = view.findViewById<Button>(R.id.bottomRightMiddle)
         val bottomLeftButton = view.findViewById<Button>(R.id.bottomLeft)
         val bottomRightButton = view.findViewById<Button>(R.id.bottomRight)
-
+        val submitButton = view.findViewById<Button>(R.id.submitBtn)
+        val homeButton = view.findViewById<Button>(R.id.homeBtn)
         /* Can remove to have no text on view create*/
 //        updateButtonText2(
 //            topLeftButton, topRightButton,
@@ -57,17 +53,44 @@ class GameFragment : Fragment() {
 //            bottomLeftMiddleButton, bottomRightMiddleButton,
 //            bottomLeftButton, bottomRightButton)
 
-        /*Creates different button layouts based on a random int*/
+
+        var correctAnswers = 0
+        var btnLayout = 0
+
+        fun incrementBtnLayout(): Int{
+            if (btnLayout == 3){
+                btnLayout = 0
+            }
+            btnLayout++
+            return btnLayout
+        }
+
         rootWordButton.setOnClickListener {
+            PlayFragment.newInstance()
+
+        }
+        rootWordButton.setOnClickListener {
+            correctAnswers = 4
             populateSynonyms()
-            val rnds = (1..3).random()
-            if (rnds == 1){
+            incrementBtnLayout()
+
+            topLeftButton.setBackgroundResource(R.drawable.button_press_color_blue)
+            topRightButton.setBackgroundResource(R.drawable.button_press_color_blue)
+            topLeftMiddleButton.setBackgroundResource(R.drawable.button_press_color_blue)
+            topRightMiddleButton.setBackgroundResource(R.drawable.button_press_color_blue)
+            bottomLeftMiddleButton.setBackgroundResource(R.drawable.button_press_color_blue)
+            bottomRightMiddleButton.setBackgroundResource(R.drawable.button_press_color_blue)
+            bottomLeftButton.setBackgroundResource(R.drawable.button_press_color_blue)
+            bottomRightButton.setBackgroundResource(R.drawable.button_press_color_blue)
+            submitButton.setBackgroundResource(R.drawable.button_press_color_blue)
+
+            if (btnLayout == 1){
                 updateButtonText(
                     topLeftButton, topRightButton,
                     topLeftMiddleButton, topRightMiddleButton,
                     bottomLeftMiddleButton, bottomRightMiddleButton,
                     bottomLeftButton, bottomRightButton)
-            } else if (rnds == 2){
+            } else if (btnLayout == 2){
                 updateButtonText2(
                     topLeftButton, topRightButton,
                     topLeftMiddleButton, topRightMiddleButton,
@@ -83,17 +106,169 @@ class GameFragment : Fragment() {
             updateRootButtonText(rootWordButton)
         }
 
+        topLeftButton.setOnClickListener {
+
+            topLeftButton.setBackgroundResource(R.drawable.button_press_color_green)
+
+            if (btnLayout == 1){
+                correctAnswers++
+            }
+            if (btnLayout == 2){
+                correctAnswers--
+            }
+            if (btnLayout == 3){
+                correctAnswers--
+            }
+        }
+
+        topRightButton.setOnClickListener {
+
+            topRightButton.setBackgroundResource(R.drawable.button_press_color_green)
+
+            if (btnLayout == 1){
+                correctAnswers--
+            }
+            if (btnLayout == 2){
+                correctAnswers++
+            }
+            if (btnLayout == 3){
+                correctAnswers++
+            }
+        }
+
+        topLeftMiddleButton.setOnClickListener {
+
+            topLeftMiddleButton.setBackgroundResource(R.drawable.button_press_color_green)
+
+            if (btnLayout == 1) {
+                correctAnswers--
+            }
+            if (btnLayout == 2) {
+                correctAnswers++
+            }
+            if (btnLayout == 3) {
+                correctAnswers--
+            }
+        }
+
+        topRightMiddleButton.setOnClickListener {
+
+            topRightMiddleButton.setBackgroundResource(R.drawable.button_press_color_green)
+
+            if (btnLayout == 1) {
+                correctAnswers++
+            }
+            if (btnLayout == 2) {
+                correctAnswers++
+            }
+            if (btnLayout == 3) {
+                correctAnswers--
+            }
+        }
+
+        bottomLeftMiddleButton.setOnClickListener {
+
+            bottomLeftMiddleButton.setBackgroundResource(R.drawable.button_press_color_green)
+
+            if (btnLayout == 1) {
+                correctAnswers++
+            }
+            if (btnLayout == 2) {
+                correctAnswers++
+            }
+            if (btnLayout == 3) {
+                correctAnswers++
+            }
+        }
+
+        bottomRightMiddleButton.setOnClickListener {
+            bottomRightMiddleButton.setBackgroundResource(R.drawable.button_press_color_green)
+
+            if (btnLayout == 1) {
+                correctAnswers--
+            }
+            if (btnLayout == 2) {
+                correctAnswers--
+            }
+            if (btnLayout == 3) {
+                correctAnswers--
+            }
+        }
+
+        bottomLeftButton.setOnClickListener {
+
+            bottomLeftButton.setBackgroundResource(R.drawable.button_press_color_green)
+
+            if (btnLayout == 1) {
+                correctAnswers--
+            }
+            if (btnLayout == 2) {
+                correctAnswers--
+            }
+            if (btnLayout == 3) {
+                correctAnswers++
+            }
+        }
+
+        bottomRightButton.setOnClickListener {
+
+            bottomRightButton.setBackgroundResource(R.drawable.button_press_color_green)
+
+            if (btnLayout == 1) {
+                correctAnswers++
+            }
+            if (btnLayout == 2) {
+                correctAnswers--
+            }
+            if (btnLayout == 3) {
+                correctAnswers++
+            }
+        }
+
+        submitButton.setOnClickListener {
+
+            submitButton.setBackgroundResource(R.drawable.button_press_color_green)
+
+            if (btnLayout == 1){
+                topLeftButton.setBackgroundResource(R.drawable.button_press_color_green)
+                topRightButton.setBackgroundResource(R.drawable.button_press_color_red)
+                topLeftMiddleButton.setBackgroundResource(R.drawable.button_press_color_red)
+                topRightMiddleButton.setBackgroundResource(R.drawable.button_press_color_green)
+                bottomLeftMiddleButton.setBackgroundResource(R.drawable.button_press_color_green)
+                bottomRightMiddleButton.setBackgroundResource(R.drawable.button_press_color_red)
+                bottomLeftButton.setBackgroundResource(R.drawable.button_press_color_red)
+                bottomRightButton.setBackgroundResource(R.drawable.button_press_color_green)
+            } else if (btnLayout == 2){
+                topLeftButton.setBackgroundResource(R.drawable.button_press_color_red)
+                topRightButton.setBackgroundResource(R.drawable.button_press_color_green)
+                topLeftMiddleButton.setBackgroundResource(R.drawable.button_press_color_green)
+                topRightMiddleButton.setBackgroundResource(R.drawable.button_press_color_green)
+                bottomLeftMiddleButton.setBackgroundResource(R.drawable.button_press_color_green)
+                bottomRightMiddleButton.setBackgroundResource(R.drawable.button_press_color_red)
+                bottomLeftButton.setBackgroundResource(R.drawable.button_press_color_red)
+                bottomRightButton.setBackgroundResource(R.drawable.button_press_color_red)
+            } else {
+                topLeftButton.setBackgroundResource(R.drawable.button_press_color_red)
+                topRightButton.setBackgroundResource(R.drawable.button_press_color_green)
+                topLeftMiddleButton.setBackgroundResource(R.drawable.button_press_color_red)
+                topRightMiddleButton.setBackgroundResource(R.drawable.button_press_color_red)
+                bottomLeftMiddleButton.setBackgroundResource(R.drawable.button_press_color_green)
+                bottomRightMiddleButton.setBackgroundResource(R.drawable.button_press_color_red)
+                bottomLeftButton.setBackgroundResource(R.drawable.button_press_color_green)
+                bottomRightButton.setBackgroundResource(R.drawable.button_press_color_green)
+            }
+            Toast.makeText(context, "Score: "+ correctAnswers +"/8 correct", Toast.LENGTH_LONG).show()
+        }
+
         rootWordButton.text = "Start"
         Log.d(TAG, "Root Word: ${rootWordButton.text}")
 
         return view
     }
 
-
-
     val rndIndex = (3..4).random()
-    var n = 0 //Helper function used to increment indices at the same rate
-    fun increment(): Int{
+    var n = 0
+    fun incRootWordList(): Int{
         if (n == 20){
             n = 0
         }
@@ -102,14 +277,14 @@ class GameFragment : Fragment() {
     }
 
     var rootWordList = listOf(
-        "", "Bad", "Lonely",  "Friend", "Clean", "Rough", "Poor", "Good", "Dirty", "Soft", "Change",
+        "", "Bad", "Lonely", "Friend", "Clean", "Rough", "Poor", "Good", "Dirty", "Soft", "Change",
         "Animal", "Character", "Family", "Important", "Learn", "True", "Mind", "Cold", "Realize", "Fine"
     )
 
     var synonymWordList = mutableListOf<String>()
 
     fun updateRootButtonText(rootWordButton: Button){
-        rootWordButton.text = rootWordList[increment()]
+        rootWordButton.text = rootWordList[incRootWordList()]
         Log.d(TAG, "Root Word: ${rootWordButton.text}")
     }
 
@@ -124,27 +299,26 @@ class GameFragment : Fragment() {
             topRightMiddleButton.text = synonymWordList[1]
             bottomLeftMiddleButton.text = synonymWordList[2]
             bottomRightButton.text = synonymWordList[rndIndex]
-            //DatamuseRepository().fetchRootWord() // this does not get the correct root word, check the refresh function
         })
 
         val resp2 = DatamuseRepository().fetchWord2()
         resp2.observe(this, Observer { word2 ->
-            topRightButton.text = word2.synonymDatamuseWords
+            topRightButton.text = word2.randomDatamuseWord
         })
 
         val resp3 = DatamuseRepository().fetchWord3()
         resp3.observe(this, Observer { word3 ->
-            topLeftMiddleButton.text = word3.synonymDatamuseWords
+            topLeftMiddleButton.text = word3.randomDatamuseWord
         })
 
         val resp4 = DatamuseRepository().fetchWord4()
         resp4.observe(this, Observer { word4 ->
-            bottomRightMiddleButton.text = word4.synonymDatamuseWords
+            bottomRightMiddleButton.text = word4.randomDatamuseWord
         })
 
         val resp5 = DatamuseRepository().fetchWord5()
         resp5.observe(this, Observer { word5 ->
-            bottomLeftButton.text = word5.synonymDatamuseWords
+            bottomLeftButton.text = word5.randomDatamuseWord
         })
     }
 
@@ -163,22 +337,22 @@ class GameFragment : Fragment() {
 
         val resp2 = DatamuseRepository().fetchWord2()
         resp2.observe(this, Observer { word2 ->
-            topLeftButton.text = word2.synonymDatamuseWords
+            topLeftButton.text = word2.randomDatamuseWord
         })
 
         val resp3 = DatamuseRepository().fetchWord3()
         resp3.observe(this, Observer { word3 ->
-            bottomRightMiddleButton.text = word3.synonymDatamuseWords
+            bottomRightMiddleButton.text = word3.randomDatamuseWord
         })
 
         val resp4 = DatamuseRepository().fetchWord4()
         resp4.observe(this, Observer { word4 ->
-            bottomLeftButton.text = word4.synonymDatamuseWords
+            bottomLeftButton.text = word4.randomDatamuseWord
         })
 
         val resp5 = DatamuseRepository().fetchWord5()
         resp5.observe(this, Observer { word5 ->
-            bottomRightButton.text = word5.synonymDatamuseWords
+            bottomRightButton.text = word5.randomDatamuseWord
         })
     }
 
@@ -196,29 +370,24 @@ class GameFragment : Fragment() {
 
         val resp2 = DatamuseRepository().fetchWord2()
         resp2.observe(this, Observer { word2 ->
-            topLeftButton.text = word2.synonymDatamuseWords
+            topLeftButton.text = word2.randomDatamuseWord
         })
 
         val resp3 = DatamuseRepository().fetchWord3()
         resp3.observe(this, Observer { word3 ->
-            topLeftMiddleButton.text = word3.synonymDatamuseWords
+            topLeftMiddleButton.text = word3.randomDatamuseWord
         })
 
         val resp4 = DatamuseRepository().fetchWord4()
         resp4.observe(this, Observer { word4 ->
-            topRightMiddleButton.text = word4.synonymDatamuseWords
+            topRightMiddleButton.text = word4.randomDatamuseWord
         })
 
         val resp5 = DatamuseRepository().fetchWord5()
         resp5.observe(this, Observer { word5 ->
-            bottomRightMiddleButton.text = word5.synonymDatamuseWords
+            bottomRightMiddleButton.text = word5.randomDatamuseWord
         })
     }
-
-    /*Switch for Synonyms - instead of doing random numbers
-    we can increment by 1 on a list and use a switch to see if the string
-    at the list index is the same, if so place synonyms into buttons*/
-
 
     fun populateSynonyms(){
         if (n == 0){
@@ -264,8 +433,7 @@ class GameFragment : Fragment() {
             synonymWordList = mutableListOf("noteworthy", "significant", "earthshaking", "grievous", "crucial")
         }
         if (n == 14){
-            synonymWordList = mutableListOf("read", "study", "ascertain", "absorb", "discover"
-            )
+            synonymWordList = mutableListOf("read", "study", "ascertain", "absorb", "discover")
         }
         if (n == 15){
             synonymWordList = mutableListOf("real", "accurate", "loyal", "dependable", "lawful")

@@ -4,6 +4,12 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.FragmentTransaction
+import edu.iu.c490.synonymist.api.PlayFragment
+
+/**
+ * Start of the application.  Designates the fragment instance GameFragment (or others).
+ **/
 
 class MainActivity : AppCompatActivity(), GameFragment.OnFragmentInteractionListener {
 
@@ -14,6 +20,8 @@ class MainActivity : AppCompatActivity(), GameFragment.OnFragmentInteractionList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
         val isFragmentContainerEmpty  = savedInstanceState == null
         if (isFragmentContainerEmpty) {

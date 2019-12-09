@@ -19,6 +19,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintEnd_toStartOf="@+id/topLeftMiddle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,6 +32,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintEnd_toStartOf="@+id/topRightMiddle"
         app:layout_constraintStart_toEndOf="@+id/topLeft"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,6 +45,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintEnd_toStartOf="@+id/topRight"
         app:layout_constraintStart_toEndOf="@+id/topLeftMiddle"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,6 +58,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="30dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/topRightMiddle"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,6 +71,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="10dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintEnd_toStartOf="@+id/bottomLeftMiddle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topLeft" />
@@ -79,6 +84,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="25dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintEnd_toStartOf="@+id/bottomRightMiddle"
         app:layout_constraintStart_toEndOf="@+id/bottomLeft"
         app:layout_constraintTop_toBottomOf="@+id/topLeftMiddle" />
@@ -91,6 +97,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="10dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintEnd_toStartOf="@+id/bottomRight"
         app:layout_constraintStart_toEndOf="@+id/bottomLeftMiddle"
         app:layout_constraintTop_toBottomOf="@+id/topRightMiddle" />
@@ -103,6 +110,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="30dp"
         android:text=""
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bottomRightMiddle"
         app:layout_constraintTop_toBottomOf="@+id/topRight" />
@@ -113,11 +121,22 @@
         android:layout_height="60dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_press_color_blue"
         android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/submitBtn"
         app:layout_constraintEnd_toStartOf="@+id/statsBtn"
         app:layout_constraintStart_toEndOf="@+id/homeBtn" />
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:background="@drawable/button_press_color_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/homeBtn"
@@ -127,6 +146,7 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="25dp"
         android:text="@string/home_button"
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rootWord"
         app:layout_constraintStart_toStartOf="parent" />
@@ -139,9 +159,9 @@
         android:layout_marginEnd="55dp"
         android:layout_marginBottom="25dp"
         android:text="@string/stats_button"
+        android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rootWord" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
