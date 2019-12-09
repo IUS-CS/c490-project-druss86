@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import edu.iu.c490.synonymist.api.PlayFragment
 
 private const val TAG = "GameFragment"
 
@@ -45,7 +45,8 @@ class GameFragment : Fragment() {
         val bottomLeftButton = view.findViewById<Button>(R.id.bottomLeft)
         val bottomRightButton = view.findViewById<Button>(R.id.bottomRight)
         val submitButton = view.findViewById<Button>(R.id.submitBtn)
-        val homeButton = view.findViewById<Button>(R.id.homeBtn)
+        val homeButton = view.findViewById<Button>(R.id.gameHomeBtn)
+        val statsButton = view.findViewById<Button>(R.id.gameStatsBtn)
 
         /* Can remove to have no text on view create*/
 //        updateButtonText2(
@@ -255,11 +256,19 @@ class GameFragment : Fragment() {
                 bottomLeftButton.setBackgroundResource(R.drawable.button_press_color_green)
                 bottomRightButton.setBackgroundResource(R.drawable.button_press_color_green)
             }
-            Toast.makeText(context, "Score: "+ correctAnswers +"/8 correct", Toast.LENGTH_LONG).show()
+
+            val toast = Toast.makeText(this.context, "Score: "+ correctAnswers +"/8 correct", Toast.LENGTH_LONG)
+            toast.setGravity(Gravity.BOTTOM, 0, 15)
+            toast.show()
+
         }
 
         homeButton.setOnClickListener {
             callbacks?.onHome()
+        }
+
+        statsButton.setOnClickListener {
+            callbacks?.onStats()
         }
 
         rootWordButton.text = "Start"
@@ -463,18 +472,13 @@ class GameFragment : Fragment() {
 
     interface Callbacks {
         fun onHome()
-        fun onStats() // call for stats
+        fun onStats()
     }
 
     private var callbacks: Callbacks? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-//        if (context is OnFragmentInteractionListener) {
-//            listener = context
-//        } else {
-//            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-//        }
         callbacks = context as Callbacks?
     }
 

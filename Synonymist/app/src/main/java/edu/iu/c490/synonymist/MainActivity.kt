@@ -11,7 +11,7 @@ import edu.iu.c490.synonymist.api.PlayFragment
  * Start of the application.  Designates the fragment instance GameFragment (or others).
  **/
 
-class MainActivity : AppCompatActivity(), PlayFragment.Callbacks, GameFragment.Callbacks {
+class MainActivity : AppCompatActivity(), PlayFragment.Callbacks, GameFragment.Callbacks, StatsFragment.Callbacks {
 
 //    override fun onFragmentInteraction(uri: Uri) {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -57,7 +57,11 @@ class MainActivity : AppCompatActivity(), PlayFragment.Callbacks, GameFragment.C
     }
 
     override fun onStats() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val fragment = StatsFragment.newInstance()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 
 }

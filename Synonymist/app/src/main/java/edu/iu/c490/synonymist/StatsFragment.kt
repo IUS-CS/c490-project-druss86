@@ -1,4 +1,4 @@
-package edu.iu.c490.synonymist.api
+package edu.iu.c490.synonymist
 
 import android.content.Context
 import android.net.Uri
@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentActivity
 import edu.iu.c490.synonymist.GameFragment
 import edu.iu.c490.synonymist.R
 
-class PlayFragment: Fragment() {
+class StatsFragment: Fragment() {
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,17 +26,17 @@ class PlayFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_play, container, false)
+        val view = inflater.inflate(R.layout.fragment_stats, container, false)
 
-        val playButton = view.findViewById<Button>(R.id.playPlayBtn)
-        val statsButton = view.findViewById<Button>(R.id.playStatsBtn)
+        val playButton = view.findViewById<Button>(R.id.statsPlayBtn)
+        val homeButton = view.findViewById<Button>(R.id.statsHomeBtn)
 
         playButton.setOnClickListener{
             callbacks?.onPlay()
         }
 
-        statsButton.setOnClickListener{
-            callbacks?.onStats()
+        homeButton.setOnClickListener{
+            callbacks?.onHome()
         }
 //        playButton.setOnClickListener( object:View.OnClickListener(){
 //            override fun onClick(view:View) {
@@ -55,7 +55,7 @@ class PlayFragment: Fragment() {
 
     interface Callbacks {
         fun onPlay()
-        fun onStats()
+        fun onHome()
     }
 
     private var callbacks: Callbacks? = null
@@ -84,7 +84,7 @@ class PlayFragment: Fragment() {
 
         @JvmStatic
         fun newInstance() =
-            PlayFragment().apply {
+            StatsFragment().apply {
                 arguments = Bundle().apply{
 
                 }
