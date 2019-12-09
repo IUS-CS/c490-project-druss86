@@ -144,11 +144,11 @@
         android:text="Submit"
         android:background="@drawable/button_press_color_blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/statsBtn"
-        app:layout_constraintStart_toEndOf="@+id/homeBtn" />
+        app:layout_constraintEnd_toStartOf="@+id/gameStatsBtn"
+        app:layout_constraintStart_toEndOf="@+id/gameHomeBtn" />
 
     <Button
-        android:id="@+id/homeBtn"
+        android:id="@+id/gameHomeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -159,7 +159,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/statsBtn"
+        android:id="@+id/gameStatsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"

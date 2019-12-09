@@ -13,20 +13,20 @@
 
 
     <Button
-        android:id="@+id/playBtn"
+        android:id="@+id/playPlayBtn"
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="25dp"
         android:background="@drawable/button_press_color_blue"
         android:text="Play"
-        app:layout_constraintBottom_toTopOf="@+id/statsBtn"
+        app:layout_constraintBottom_toTopOf="@+id/playStatsBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/statsBtn"
+        android:id="@+id/playStatsBtn"
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:layout_marginTop="25dp"
@@ -36,5 +36,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/playPlayBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
